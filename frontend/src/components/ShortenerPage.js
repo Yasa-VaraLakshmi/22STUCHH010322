@@ -17,7 +17,7 @@ const ShortenerPage = ({ onNavigate }) => {
       setShortUrl(response.data.shortUrl);
       setError('');
     } catch (err) {
-      console.error(err.response?.data || err.message);
+      console.error("Error:", err.response?.data || err.message);
       setError('Failed to shorten URL.');
     }
   };
@@ -28,7 +28,9 @@ const ShortenerPage = ({ onNavigate }) => {
       {shortUrl && (
         <Box mt={2}>
           <Typography variant="h6">Shortened URL:</Typography>
-          <Typography variant="body1" color="primary">{shortUrl}</Typography>
+          <Typography variant="body1" color="primary">
+            <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
+          </Typography>
         </Box>
       )}
       {error && <Typography color="error">{error}</Typography>}
