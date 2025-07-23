@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 
 const UrlInputForm = ({ onSubmit }) => {
   const [url, setUrl] = useState('');
@@ -7,29 +7,29 @@ const UrlInputForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit({ url, title });
-    }
+    if (!url || !title) return;
+    onSubmit({ url, title });
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
       <TextField
-        label="Enter URL"
         fullWidth
+        label="Original URL"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        sx={{ mb: 2 }}
-        required
+        margin="normal"
       />
       <TextField
-        label="Title"
         fullWidth
+        label="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        sx={{ mb: 2 }}
+        margin="normal"
       />
-      <Button type="submit" variant="contained">Shorten URL</Button>
+      <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+        Shorten
+      </Button>
     </Box>
   );
 };
